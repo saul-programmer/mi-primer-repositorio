@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateProductsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {   //realizar cambios
+        Schema::create('products', function (Blueprint $table) {
+            $table->bigIncrements('id');
+
+            $table->integer('user_id')->unsigned()->index();
+            $table->string('title');
+            $table->text('description');
+            $table->decimal('pricing',9,2); //centavos
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {   //revertir los mismos cambios
+        Schema::drop('products');
+    }
+}
